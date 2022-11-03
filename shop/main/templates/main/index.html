@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href='static/main/css/index.css'>
+<!--  CSS и JS слайдера -->
+<link rel="stylesheet" href='static/main/css/slider.css'>
+<script defer src='static/main/js/slider.js'></script>
+<!-- Cлайдер -->
+<div class="slider">
+	<div class="item"> <img src="static/main/img/slider/1.jpg"> </div>
+	<div class="item"> <img src="static/main/img/slider/2.jpg"> </div>
+	<div class="item"> <img src="static/main/img/slider/3.jpg"> </div>
+	<!-- Кнопки-стрелочки --><a class="previous" onclick="previousSlide()">&#10094;</a> <a class="next" onclick="nextSlide()">&#10095;</a> </div>
+<!-- Сетка для товаров -->
+<div class="container">
+	<div class="row">
+		<div class="col-sm"> <img src="static/main/img/orig.webp" alt="">
+			<br>Описание
+			<br> Цена </div>
+		<div class="col-sm"> Одна из четырёх колонок </div>
+		<div class="col-sm"> Одна из четырёх колонок </div>
+		<div class="col-sm"> Одна из четырёх колонок </div>
+	</div>
+</div>
+{% endblock %}

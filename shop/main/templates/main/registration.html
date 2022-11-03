@@ -1,0 +1,60 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+			<h1 class="text-left">Регистрация</h1>
+			<form id="contact-form" method="post" role="form">
+      {% csrf_token %}
+				<div class="messages"></div>
+				<div class="controls">
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="form_name">Имя *</label>
+							<input id="form_name" type="text" name="name" class="form-control" placeholder="Пожалуйста, введите своё имя *" required="required" data-error="Это поле обязательно">
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="col-md-6">
+							<label for="form_lastname">Фамилия *</label>
+							<input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Пожалуйста, введите свою фамилию *" required="required" data-error="Это поле обязательно">
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="col-md-6">
+							<label for="form_email">Email *</label>
+							<input id="form_email" type="email" name="email" class="form-control" placeholder="Введите свой email *" required="required" data-error="Неверный пароль">
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="col-md-6">
+							<label for="form_password">Пароль *</label>
+							<input id="form_password" type="password" name="password" class="form-control" placeholder="Введите пароль" required="required" data-error="Слишком легкий пароль">
+							<div class="help-block with-errors"></div>
+						</div>
+						<div class="col-md-6">
+							<label for="form_password">Повторите пароль</label>
+							<input id="form_password" type="password" name="password" class="form-control" placeholder="Повторите пароль" required="required" data-error="Пароли не совпадают">
+							<div class="help-block with-errors"></div>
+						</div> <a href="{% url 'login' %}" style="padding-bottom: 10px;">Уже есть аккаунт?</a>
+						<div class="col-md-12">
+							<input type="submit" class="btn btn-success btn-send" value="Готово"> </div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- /.col-lg-8 col-lg-offset-2 -->
+	</div>
+	<!-- /.row-->
+</div>
+<!-- /.container-->
+<style media="screen">
+.container {
+	padding-top: 70px;
+}
+
+.col-md-6 {
+	padding-bottom: 10px;
+}
+</style>
+{% endblock %}
