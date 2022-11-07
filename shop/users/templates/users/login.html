@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 100px;">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+	    <h1 class="text-left">Авторизация</h1>
+          <form  method="post">
+              {% csrf_token %}
+              <div class="controls">
+      					<div class="form-row">
+                  {% for f in form %}
+      						<div class="col-md-6" style="padding-bottom: 10px;">
+      							 <label for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}
+      							 <div class="help-block with-errors">{{ f.errors}}</div>
+      						</div>
+                  {% endfor %}
+                </div> <a href="{% url 'registration' %}">Ещё нету аккаунта?</a>
+              </div>
+              <div ><font size="3" color="red">{{ error_maessage }}</font></div>
+              <div class="col-md-12" style="padding-top: 5px;">
+                <input type="submit" class="btn btn-success btn-send" value="Готово"> </div>
+          </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

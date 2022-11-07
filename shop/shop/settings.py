@@ -26,12 +26,13 @@ SECRET_KEY = 'django-insecure-z*1)5)%vrxt^bhcvtx@5xny*f1i+m&^wkc5uw&y(8#h1@b_zeg
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'users.User'
 
 # Application definition
 
 INSTALLED_APPS = [
     'main',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,7 +86,6 @@ DATABASES = {
     }
 }
 
-#ALLOWED_HOSTS = ['your_server_domain_or_IP']
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
