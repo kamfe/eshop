@@ -67,27 +67,15 @@
 	<!-- Сетка для товаров -->
 	<div class="col-xs-9 col-p-v site-body-main">
 		<div class="row">
-			{% for proc in page_obj %}
+			{% for proc in filtred_page %}
 		    <div class="col-sm"> <img src="static/main/img/processors_images/{{proc.img}}.jpg" alt="{{proc.name}}">
 			  	<a href="/{{proc.name}}" class="product-name">Процессор {{proc.name}}</a>
 			  	<p class="product-description">Основные характеристики: {{proc.number_of_cores}}-ядерный процессор, {{proc.base_clock}} МГц, техпроцесс {{proc.processor_technology}} нм, тепловыделение {{proc.thermal_design_power}} Вт, объем кэша L1/L2/L3: {{proc.cache_memory}}</p></div>
 		  {% endfor %}
-		</div>
-		<div class="row form-group" style="padding-bottom: 5%;">
-				{% if page_obj.has_previous %}
-					{%  if page_obj.previous_page_number > 2 %}
-						<a href="?page={{ 1 }}" class="col-xs-3 page-link">{{ 1 }}</a><a href="?page={{ 1 }}" class="col-xs-3 page-link">...</a>
-					{% endif %}
-					<a href="?page={{ page_obj.previous_page_number }}" class="col-xs-3 page-link">{{ page_obj.previous_page_number }}</a>
-					<a href="?page={{ page_number }}" class="col-xs-3 page-link" style='background-color: white;'>{{ page_number }}</a>
-					{% if page_obj.has_next %}
-						<a href="?page={{ page_obj.next_page_number }}" class="col-xs-3 page-link">{{ page_obj.next_page_number }}</a>
-					{% endif %}
-				{% elif page_obj.has_next %}
-					<a href="?page={{ 1 }}" class="col-xs-3 page-link" style='background-color: white;'>{{ 1 }}</a>
-					<a href="?page={{ 2 }}" class="col-xs-3 page-link">{{ 2 }}</a>
-					<a href="?page={{ 3 }}" class="col-xs-3 page-link">{{ 3 }}</a>
-				{% endif %}
+
+      {% if is_empty %}
+        <h2>По вашим фильтрам ничего не найдено :(</h2>
+      {% endif %}
 		</div>
   </div>
 {% endblock %}

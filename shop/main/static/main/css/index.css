@@ -28,6 +28,11 @@
   display: block;
 }
 
+.btn {
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 25px;
+}
 /* Сетка товаров */
 .col-sm{
   background-image: url("../img/background2.png");
