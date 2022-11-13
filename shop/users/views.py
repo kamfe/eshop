@@ -19,6 +19,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
 
+
 def user_registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -34,6 +35,7 @@ def user_registration(request):
     else:
         form = UserCreationForm()
     return render(request, 'users/registration.html', {'form': form})
+
 
 def user_logout(request):
     logout(request)

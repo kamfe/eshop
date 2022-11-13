@@ -1,8 +1,34 @@
 {% extends 'main/layout.html' %}
 
-{% block title %} Купить {{ product_name }}{% endblock %}
+{% block title %} Купить {{ product.name}}{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href='static/main/css/index.css'>
-
+<div class="container">
+	<div class="row">
+		<div class="col-sm">
+			<br>
+			<h2>Процессор {{ product.name }}</h2>
+			<br> <img src="static\main\img\processors_images\{{product.img}}.jpg" alt="product.name" height="400px" width="400px"> </div>
+		<div class="col-sm">
+			<div style="padding-bottom: 20px; padding-left: 20px; background-color: grey;">
+				<ul style="margin-top: 20%; font-size: 26px">Основные характеристики:
+					<li>Число ядер - {{product.number_of_cores}}</li>
+					<li>Частота - {{product.base_clock}} МГц</li>
+					<li>Техпроцесс - {{product.processor_technology}} нм</li>
+					<li>Тепловыделение - {{product.thermal_design_power}} Вт</li>
+					<li>Объем кэша L1/L2/L3 {{product.cache_memory}}</li>
+					<li>Интегрированное графическое ядро {{ product.integrated_graphics_core }}</li>
+				</ul>
+				<h3 style="font-weight: bold">Количество на складе: {{ product.units_in_stock}} шт</h3>
+				<br>
+				<h3 style="font-weight: bold">${{ product.price }}</h3>
+				<form action="{% url 'cart_add' product.id %}" method="post">
+					{{ cart_product_form }}
+					{% csrf_token %}
+					<input class="btn btn-success btn-sendt" type="submit" value="Добавить в корзину">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}

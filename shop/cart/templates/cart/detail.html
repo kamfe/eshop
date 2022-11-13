@@ -1,0 +1,45 @@
+{% extends "main/layout.html" %}
+{% block title %} Ваша корзина {% endblock %}
+{% block content %}
+<h1>Ваша корзина</h1>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th>Продукт</th>
+        <th>Фото</th>
+        <th>Количество</th>
+        <th>Цена, шт</th>
+        <th>Полная цена</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in cart %}
+        {% with product=item.product %}
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>
+                  <a href="{{ product.name }}">
+                    <img src="static/main/img/processors_images/{{product.img}}.jpg" alt="{{ product.name }}" height="200px"
+                    width="200px">
+                  </a>
+              </td>
+              <td>{{ item.quantity }}</td>
+              <td>${{ item.price }}</td>
+              <td>${{ item.total_price }}</td>
+              <td><a href="{% url 'cart_remove' product.id %}">Удалить</a></td>
+            </tr>
+        {% endwith %}
+    {% endfor %}
+    <tr class="total">
+        <td>Всего</td>
+        <td colspan="4"></td>
+        <td>${{ cart.get_total_price }}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="text-right" style="margin: 10px; padding-bottom:30px;">
+    <a href="{% url 'home' %}" class="btn" style="background-color: gray; color: white;">Продолжить покупки</a>
+    <a href="#" class="btn btn-success btn-send">Заказать</a>
+</div>
+{% endblock %}

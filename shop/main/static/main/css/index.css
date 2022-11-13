@@ -1,4 +1,4 @@
-/* Фильтры */
+/* Filters */
 .col-xs-3 {
   border: 3px solid #888;
   border-radius: 10px;
@@ -33,7 +33,7 @@
   margin-top: 20px;
   margin-left: 25px;
 }
-/* Сетка товаров */
+/* Products grid */
 .col-sm{
   background-image: url("../img/background2.png");
   background-color: gray;

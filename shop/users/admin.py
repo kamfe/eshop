@@ -17,6 +17,7 @@ class UserCreationForm(forms.ModelForm):
         model = User
         fields = ('email',)
 
+
     def is_password_correct(self, request, form):
         pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$'
         # Check that the two password entries match
@@ -28,6 +29,7 @@ class UserCreationForm(forms.ModelForm):
     	       return False
         return True
 
+
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super().save(commit=False)
@@ -35,6 +37,7 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder':'Введите почту'}))

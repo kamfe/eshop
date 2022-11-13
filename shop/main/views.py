@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import ProcessorCharacteristics
 from django.core.paginator import Paginator
+from cart.forms import CartAddProductForm
 
 def index(request):
     proc_data = Paginator(ProcessorCharacteristics.objects.all(), 30)
@@ -10,14 +11,16 @@ def index(request):
     data = {
         'page_obj' : page_obj,
         'page_number': page_number,
-    }
+        }
 
     return render(request, 'main/index.html', data)
+
 
 def filtred(request):
     core_list = request.GET.getlist('filter_by_core')
     pack_list = request.GET.getlist('filter_by_pack')
     name_list = request.GET.getlist('filter_by_name')
+
 
     def core_filter(list):
         if len(list) == 0 or len(list) == 2:
@@ -26,12 +29,14 @@ def filtred(request):
         list.pop(-1)
         return result & core_filter(list)
 
+
     def pack_filter(list):
         if len(list) == 0 or len(list) == 2:
             return ProcessorCharacteristics.objects.all()
         result = ProcessorCharacteristics.objects.filter(name__contains=list[-1])
         list.pop(-1)
         return result & pack_filter(list)
+
 
     def name_filter(list):
         if len(list) == 0:
@@ -55,12 +60,18 @@ def filtred(request):
     data = {
         'filtred_page' : filtred_page,
         'is_empty' : is_empty,
-    }
+        }
 
     return render(request, 'main/filtred.html', data)
 
+
 def product_page(request, product_name:str):
+
+    product = ProcessorCharacteristics.objects.get(name__contains = product_name)
+    cart_product_form = CartAddProductForm()
+
     data = {
-        'product_name': product_name,
-    }
+        'product': product,
+        'cart_product_form': cart_product_form,
+        }
     return render(request, 'main/product_page.html', data)

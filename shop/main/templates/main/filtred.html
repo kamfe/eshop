@@ -70,7 +70,8 @@
 			{% for proc in filtred_page %}
 		    <div class="col-sm"> <img src="static/main/img/processors_images/{{proc.img}}.jpg" alt="{{proc.name}}">
 			  	<a href="/{{proc.name}}" class="product-name">Процессор {{proc.name}}</a>
-			  	<p class="product-description">Основные характеристики: {{proc.number_of_cores}}-ядерный процессор, {{proc.base_clock}} МГц, техпроцесс {{proc.processor_technology}} нм, тепловыделение {{proc.thermal_design_power}} Вт, объем кэша L1/L2/L3: {{proc.cache_memory}}</p></div>
+			  	<p class="product-description">Основные характеристики: {{proc.number_of_cores}}-ядерный процессор, {{proc.base_clock}} МГц, техпроцесс {{proc.processor_technology}} нм, тепловыделение {{proc.thermal_design_power}} Вт, объем кэша L1/L2/L3: {{proc.cache_memory}}</p>
+					<p class="product-description" style="font-weight: bold;">Цена: {{ proc.price}}$</p></div>
 		  {% endfor %}
 
       {% if is_empty %}

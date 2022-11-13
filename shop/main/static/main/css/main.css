@@ -20,7 +20,7 @@ header {
   right: 20px;
 }
 
-.menu ul {
+.add_to_cart, .menu ul {
   display: flex;
   flex-flow: row nowrap;
   margin: 2px 0 0;
@@ -39,11 +39,10 @@ header {
   margin-right: 0;
 }
 
-.menu a {
+.add_to_cart, .menu a {
   color: #000;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: .27em;
 }
 
 .menu i {

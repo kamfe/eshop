@@ -9,3 +9,5 @@ class ProcessorCharacteristics(models.Model):
     cache_memory = models.TextField()
     integrated_graphics_core = models.TextField()
     img = models.TextField()
+    units_in_stock = models.PositiveSmallIntegerField()
+    price = models.PositiveSmallIntegerField()
