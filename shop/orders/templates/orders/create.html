@@ -1,0 +1,36 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Ваш закакз{% endblock %}
+
+{% block content %}
+<h1 class='text-center' style="margin-top: 20px;">Оформление заказа</h1>
+  <div class='text-left'>
+    <h3 class='text-left'>Вы покупаете:</h3>
+    <ul>
+        {% for item in cart %}
+            <li style="font-size:20px">
+                {{ item.quantity }} x <a href="{{ item.product.name }}" class="col-xs-3">{{ item.product.name }}</a>  ${{ item.total_price }}
+            </li>
+        {% endfor %}
+    </ul>
+    <p style="font-size:26px">Итого: ${{ cart.get_total_price }}</p>
+  </div>
+<div class="row" style='margin-left: 5%; '>
+<form method="post" class="order-form" style="max-width: 40%;">
+  {% csrf_token %}
+  <div class="controls">
+    <div class="form-row">
+      {% for el in form %}
+      <div class="col-md-6" style="padding-bottom: 10px;">
+         <label for="{{ f.id_for_label }}">{{ el.label }}: </label>{{ el }}
+         <div class="help-block with-errors">{{ el.errors}}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div><font size="3" color="red">{{ error_maessage }}</font></div>
+  <div class="col-md-12" style="padding-top: 5px;">
+    <input type="submit" class="btn btn-success btn-send" value="Готово"> </div>
+</form>
+</div>
+{% endblock %}

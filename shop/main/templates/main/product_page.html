@@ -22,7 +22,7 @@
 				<h3 style="font-weight: bold">Количество на складе: {{ product.units_in_stock}} шт</h3>
 				<br>
 				<h3 style="font-weight: bold">${{ product.price }}</h3>
-				<form action="{% url 'cart_add' product.id %}" method="post">
+				<form action="{% url 'cart:cart_add' product.id %}" method="post">
 					{{ cart_product_form }}
 					{% csrf_token %}
 					<input class="btn btn-success btn-sendt" type="submit" value="Добавить в корзину">

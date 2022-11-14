@@ -1,0 +1,10 @@
+{% extends "main/layout.html" %}
+
+{% block title %}Спасибо!{% endblock %}
+
+{% block content %}
+<div class="text-center" style="margin-top: 10%; font-size: 26px">
+  <h1>Спасибо</h1>
+  <p>Ваш заказ успешно оформлен. Его номер - <strong>{{ order.id }}</strong>.</p>
+</div>
+{% endblock %}

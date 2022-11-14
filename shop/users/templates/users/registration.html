@@ -11,13 +11,13 @@
               {% csrf_token %}
               <div class="controls">
       					<div class="form-row">
-                  {% for f in form %}
+                  {% for el in form %}
       						<div class="col-md-6" style="padding-bottom: 10px;">
-      							 <label for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}
-      							 <div class="help-block with-errors">{{ f.errors}}</div>
+      							 <label for="{{ f.id_for_label }}">{{ el.label }}: </label>{{ el }}
+      							 <div class="help-block with-errors">{{ el.errors}}</div>
       						</div>
                   {% endfor %}
-                </div> <a href="{% url 'login' %}">Уже есть аккаунт?</a>
+                </div> <a href="{% url 'users:login' %}">Уже есть аккаунт?</a>
               </div>
               <div><font size="3" color="red">{{ error_maessage }}</font></div>
               <div class="col-md-12" style="padding-top: 5px;">

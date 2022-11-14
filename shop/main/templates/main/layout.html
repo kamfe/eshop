@@ -20,11 +20,11 @@
     <div class="menu">
       <ul>
         {% if request.user.is_authenticated %}
-        <li><a href="{% url 'cart_detail' %}">{{ cart|length }} <i class="fa-solid fa-basket-shopping"></i> {{ user.get_username }}</a></li>
-        <li><a href="{% url 'logout' %}">Выйти</a></li>
+        <li><a href="{% url 'cart:cart_detail' %}">{{ cart|length }} <i class="fa-solid fa-basket-shopping"></i> {{ user.get_username }}</a></li>
+        <li><a href="{% url 'users:logout' %}">Выйти</a></li>
         {% else %}
-        <li><a href="{% url 'login' %}"><i class="fa-solid fa-user"></i>Вход</a><a href="{% url 'registration' %}">\Регистрация</a></li>
-        <li><a href="{% url 'cart_detail' %}">{{ cart|length }} <i class="fa-solid fa-basket-shopping"></i>Корзина</a></li>
+        <li><a href="{% url 'users:login' %}"><i class="fa-solid fa-user"></i>Вход</a><a href="{% url 'users:registration' %}">\Регистрация</a></li>
+        <li><a href="{% url 'cart:cart_detail' %}">{{ cart|length }} <i class="fa-solid fa-basket-shopping"></i>Корзина</a></li>
         {% endif %}
       </ul>
     </div>
