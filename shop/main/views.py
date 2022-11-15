@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import ProcessorCharacteristics
+from .models import ProcessorCharacteristics as PC
 from django.core.paginator import Paginator
 from cart.forms import CartAddProductForm
 
 def index(request):
-    proc_data = Paginator(ProcessorCharacteristics.objects.all(), 30)
+    proc_data = Paginator(PC.objects.all(), 30)
     page_number = request.GET.get('page')
     page_obj = proc_data.get_page(page_number)
 
@@ -21,36 +21,12 @@ def filtred(request):
     pack_list = request.GET.getlist('filter_by_pack')
     name_list = request.GET.getlist('filter_by_name')
 
-
-    def core_filter(list):
-        if len(list) == 0 or len(list) == 2:
-            return ProcessorCharacteristics.objects.all()
-        result = ProcessorCharacteristics.objects.filter(integrated_graphics_core__contains=list[-1])
-        list.pop(-1)
-        return result & core_filter(list)
-
-
-    def pack_filter(list):
-        if len(list) == 0 or len(list) == 2:
-            return ProcessorCharacteristics.objects.all()
-        result = ProcessorCharacteristics.objects.filter(name__contains=list[-1])
-        list.pop(-1)
-        return result & pack_filter(list)
-
-
-    def name_filter(list):
-        if len(list) == 0:
-            return ProcessorCharacteristics.objects.filter(name__contains = 'None')
-        result = ProcessorCharacteristics.objects.filter(name__contains=list[-1])
-        list.pop(-1)
-        return result | name_filter(list)
-
     if len(name_list) > 0:
-        a  = core_filter(core_list) & pack_filter(pack_list) & name_filter(name_list)
+        final_filter  = PC.core_filter(core_list) & PC.pack_filter(pack_list) & PC.name_filter(name_list)
     else:
-        a = core_filter(core_list) & pack_filter(pack_list)
+        final_filter = PC.core_filter(core_list) & PC.pack_filter(pack_list)
 
-    filtred_page = Paginator(a, 1000).get_page(1)
+    filtred_page = Paginator(final_filter, 1000).get_page(1)
 
     if len(filtred_page.object_list) == 0:
         is_empty = True
@@ -66,8 +42,7 @@ def filtred(request):
 
 
 def product_page(request, product_name:str):
-
-    product = ProcessorCharacteristics.objects.get(name__contains = product_name)
+    product = PC.objects.get(name__contains = product_name)
     cart_product_form = CartAddProductForm()
 
     data = {

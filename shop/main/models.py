@@ -11,3 +11,25 @@ class ProcessorCharacteristics(models.Model):
     img = models.TextField()
     units_in_stock = models.PositiveSmallIntegerField()
     price = models.PositiveSmallIntegerField()
+
+
+    def core_filter(list):
+        if len(list) == 0 or len(list) == 2:
+            return ProcessorCharacteristics.objects.all()
+        else:
+            return ProcessorCharacteristics.objects.filter(integrated_graphics_core__contains=list[0])
+
+
+    def pack_filter(list):
+        if len(list) == 0 or len(list) == 2:
+            return ProcessorCharacteristics.objects.all()
+        else:
+            return ProcessorCharacteristics.objects.filter(name__contains=list[0])
+
+
+    def name_filter(list):
+        if len(list) == 0:
+            return ProcessorCharacteristics.objects.filter(name__contains = 'None')
+        result = ProcessorCharacteristics.objects.filter(name__contains=list[-1])
+        list.pop(-1)
+        return result | ProcessorCharacteristics.name_filter(list)
