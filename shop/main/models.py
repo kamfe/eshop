@@ -13,6 +13,7 @@ class ProcessorCharacteristics(models.Model):
     price = models.PositiveSmallIntegerField()
 
 
+    @staticmethod
     def core_filter(list):
         if len(list) == 0 or len(list) == 2:
             return ProcessorCharacteristics.objects.all()
@@ -20,6 +21,7 @@ class ProcessorCharacteristics(models.Model):
             return ProcessorCharacteristics.objects.filter(integrated_graphics_core__contains=list[0])
 
 
+    @staticmethod
     def pack_filter(list):
         if len(list) == 0 or len(list) == 2:
             return ProcessorCharacteristics.objects.all()
@@ -27,6 +29,7 @@ class ProcessorCharacteristics(models.Model):
             return ProcessorCharacteristics.objects.filter(name__contains=list[0])
 
 
+    @staticmethod
     def name_filter(list):
         if len(list) == 0:
             return ProcessorCharacteristics.objects.filter(name__contains = 'None')

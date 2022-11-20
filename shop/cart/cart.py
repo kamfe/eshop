@@ -68,6 +68,7 @@ class Cart(object):
             del self.cart[product_id]
             self.save()
 
+
     def get_total_price(self):
         """
         Calculation of the cost of goods in the basket.
